@@ -1,0 +1,1 @@
+- [GameBox product boundary](gamebox.md) — keep the arcade local-first and frontend-only unless the product scope explicitly changes.

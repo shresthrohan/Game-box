@@ -1,0 +1,35 @@
+import { type ReactNode } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ErrorBoundary } from '@/components/error-boundary';
+import { Toaster } from '@/components/ui/toaster';
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { GameShell } from '@/components/shell';
+import Home from '@/pages/home';
+import Library from '@/pages/library';
+import About from '@/pages/about';
+import GamePage from '@/pages/game-page';
+import NotFound from '@/pages/not-found';
+import { Route, Switch, useLocation, Router as WouterRouter } from 'wouter';
+
+const queryClient = new QueryClient();
+
+function Router() {
+  return <RoutedErrorBoundary><GameShell><Switch>
+    <Route path="/" component={Home} />
+    <Route path="/games" component={Library} />
+    <Route path="/about" component={About} />
+    <Route path="/game/:slug" component={GamePage} />
+    <Route component={NotFound} />
+  </Switch></GameShell></RoutedErrorBoundary>;
+}
+
+function RoutedErrorBoundary({ children }: { children: ReactNode }) {
+  const [location] = useLocation();
+  return <ErrorBoundary resetKey={location}>{children}</ErrorBoundary>;
+}
+
+function App() {
+  return <QueryClientProvider client={queryClient}><TooltipProvider><WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, '')}><Router /></WouterRouter><Toaster /></TooltipProvider></QueryClientProvider>;
+}
+
+export default App;

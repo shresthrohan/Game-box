@@ -1,0 +1,1571 @@
+# Build a Complete React Mini-Games Hub — "GameBox"
+
+You are an expert React frontend developer. Build a complete, polished, responsive web application called **GameBox**.
+
+GameBox is a browser-based mini-games platform where users can browse and play multiple classic games from one website.
+
+The project should feel like a real small gaming platform, not a basic college CRUD project.
+
+---
+
+# 1. CORE OBJECTIVE
+
+Create a React website with:
+
+* A polished landing page
+* A complete games library
+* Search functionality
+* Game categories
+* Individual game pages
+* Working game logic
+* Score tracking
+* Restart functionality
+* Game-over/result screens
+* Responsive design
+* LocalStorage persistence where useful
+* Consistent navigation
+* Dark arcade-inspired visual design
+
+The first release must contain these games:
+
+1. Tic Tac Toe
+2. Wordle
+3. Dots & Boxes
+4. Memory Match
+5. 2048
+6. Snake
+7. Hangman
+8. Connect Four
+9. Rock Paper Scissors
+10. Number Guessing
+
+Every listed game must actually be playable.
+
+Do not create placeholder game pages.
+
+---
+
+# 2. TECHNOLOGY
+
+Use:
+
+* React
+* Vite
+* JavaScript
+* CSS
+* React Router
+* Browser LocalStorage
+
+Do NOT use TypeScript.
+
+Do NOT introduce a backend.
+
+Do NOT use a database.
+
+Avoid unnecessary libraries.
+
+Use React hooks such as:
+
+* useState
+* useEffect
+* useMemo
+* useRef where appropriate
+
+The application must run with:
+
+npm install
+npm run dev
+
+---
+
+# 3. PROJECT STRUCTURE
+
+Use a clean structure similar to:
+
+src/
+│
+├── components/
+│   ├── Navbar.jsx
+│   ├── Footer.jsx
+│   ├── GameCard.jsx
+│   ├── GameGrid.jsx
+│   ├── SearchBar.jsx
+│   ├── CategoryFilter.jsx
+│   ├── GameHeader.jsx
+│   ├── GameResult.jsx
+│   └── EmptyState.jsx
+│
+├── games/
+│   ├── TicTacToe.jsx
+│   ├── Wordle.jsx
+│   ├── DotsAndBoxes.jsx
+│   ├── MemoryMatch.jsx
+│   ├── Game2048.jsx
+│   ├── Snake.jsx
+│   ├── Hangman.jsx
+│   ├── ConnectFour.jsx
+│   ├── RockPaperScissors.jsx
+│   └── NumberGuessing.jsx
+│
+├── pages/
+│   ├── Home.jsx
+│   ├── Games.jsx
+│   ├── About.jsx
+│   └── NotFound.jsx
+│
+├── data/
+│   └── games.js
+│
+├── utils/
+│   ├── storage.js
+│   └── gameUtils.js
+│
+├── App.jsx
+├── main.jsx
+└── index.css
+
+Keep game-specific logic inside the relevant game component or separate utility when appropriate.
+
+Do not create one enormous App.jsx file.
+
+---
+
+# 4. BRANDING
+
+Application name:
+
+GameBox
+
+Tagline:
+
+"Your games. Your playground."
+
+Alternative small text:
+
+"Classic games, quick challenges, endless rematches."
+
+Create a simple text/icon based GameBox logo.
+
+The logo should appear in the navbar.
+
+---
+
+# 5. VISUAL DESIGN
+
+Use a modern dark arcade aesthetic.
+
+Overall characteristics:
+
+* Dark background
+* High contrast
+* Rounded cards
+* Large typography
+* Subtle gradients
+* Soft shadows
+* Small hover animations
+* Clean spacing
+* Game-inspired UI
+* Minimal clutter
+
+Do not make the interface excessively neon or childish.
+
+It should look like a modern indie gaming website.
+
+Use CSS variables for the main design system.
+
+For example:
+
+--bg
+--surface
+--surface-light
+--text
+--text-muted
+--border
+--accent
+--accent-secondary
+
+Do not hardcode the same colors repeatedly throughout the CSS.
+
+Use CSS transitions for:
+
+* Buttons
+* Cards
+* Navigation links
+* Hover states
+* Game interactions
+
+Animations should be subtle and performant.
+
+---
+
+# 6. RESPONSIVE DESIGN
+
+The website must work properly on:
+
+* Desktop
+* Laptop
+* Tablet
+* Mobile
+
+Do not simply shrink the desktop layout.
+
+Create proper responsive layouts.
+
+Navbar on mobile should become a compact mobile navigation.
+
+Game boards must remain usable on small screens.
+
+Buttons must have sufficiently large touch targets.
+
+Avoid horizontal scrolling.
+
+---
+
+# 7. NAVBAR
+
+Create a reusable Navbar.
+
+Desktop:
+
+GAMEBOX
+
+Home
+Games
+Categories
+About
+
+Search icon/input
+
+Mobile:
+
+GAMEBOX
+
+Menu button
+
+Navigation should use React Router.
+
+Routes:
+
+/
+/games
+/about
+/game/tic-tac-toe
+/game/wordle
+/game/dots-and-boxes
+/game/memory-match
+/game/2048
+/game/snake
+/game/hangman
+/game/connect-four
+/game/rock-paper-scissors
+/game/number-guessing
+
+Add a Back to Games button on individual game pages.
+
+---
+
+# 8. HOME PAGE
+
+The Home page should contain:
+
+## Hero section
+
+Large heading:
+
+"YOUR GAMES.
+YOUR PLAYGROUND."
+
+Supporting text:
+
+"Classic games, puzzles and challenges — all in one place."
+
+Buttons:
+
+"PLAY NOW"
+
+"EXPLORE GAMES"
+
+The Play Now button should navigate to /games.
+
+Add a subtle decorative gaming visual using CSS rather than requiring external images.
+
+---
+
+# 9. FEATURED GAMES
+
+Below the hero, display 3 or 4 featured games.
+
+Use reusable GameCard components.
+
+Each card should contain:
+
+* Game icon
+* Game name
+* Short description
+* Category
+* Player mode
+* Play button
+
+Example:
+
+TIC TAC TOE
+Classic 2-player strategy game
+Board • 2 Players
+
+[PLAY]
+
+Cards should navigate to the correct game route.
+
+---
+
+# 10. CATEGORIES
+
+Create categories:
+
+* All
+* Board
+* Puzzle
+* Word
+* Arcade
+* Casual
+
+Each game must have one category.
+
+The Games page should allow filtering by category.
+
+---
+
+# 11. GAMES PAGE
+
+Create a complete game library.
+
+Top:
+
+"ALL GAMES"
+
+Description:
+
+"Pick a game and start playing."
+
+Then:
+
+Search bar
+
+Category filters
+
+Game grid
+
+Search must filter games by:
+
+* Name
+* Description
+* Category
+
+Search should update immediately while typing.
+
+If nothing matches, display a proper EmptyState.
+
+Example:
+
+"No games found."
+
+"Try another search or category."
+
+---
+
+# 12. GAME DATA
+
+Create a central games.js data file.
+
+Each game should contain something similar to:
+
+{
+id,
+name,
+slug,
+description,
+category,
+players,
+difficulty,
+icon
+}
+
+Use this data to generate GameCards rather than manually writing every card.
+
+---
+
+# 13. TIC TAC TOE
+
+Implement a fully functional Tic Tac Toe.
+
+Requirements:
+
+* 3×3 board
+* X and O
+* Two-player mode
+* Alternating turns
+* Win detection
+* Draw detection
+* Highlight winning cells
+* Restart button
+* Current player indicator
+* Score tracking
+
+Score:
+
+Player X
+Player O
+Draws
+
+Store score in LocalStorage.
+
+Result screen:
+
+"You Won!"
+
+or
+
+"It's a Draw!"
+
+Buttons:
+
+PLAY AGAIN
+BACK TO GAMES
+
+Do not allow moves after game completion.
+
+---
+
+# 14. WORDLE
+
+Implement a functional Wordle clone.
+
+Rules:
+
+* Target word has 5 letters
+* Maximum 6 attempts
+* User can type using physical keyboard
+* Provide an on-screen keyboard
+* Enter submits guess
+* Backspace deletes a letter
+
+Letter states:
+
+* Correct position
+* Present but wrong position
+* Not present
+
+Implement correct Wordle-style duplicate-letter handling.
+
+For example, if the target contains one occurrence of a letter but the guess contains it multiple times, do not incorrectly mark all occurrences as present.
+
+Use a local word list containing a reasonable number of five-letter words.
+
+Do not depend on an external API.
+
+After winning:
+
+Display:
+
+"You got it!"
+
+After six failed attempts:
+
+Reveal the answer.
+
+Add:
+
+NEW GAME
+
+Keyboard should visually reflect the best known state of each letter.
+
+---
+
+# 15. DOTS & BOXES
+
+Create a playable Dots & Boxes game.
+
+Use a 4×4 grid of dots.
+
+Players:
+
+Player 1
+Player 2
+
+Gameplay:
+
+* Players select horizontal or vertical edges
+* Drawing an edge should visibly update the board
+* Completing a box gives that player a point
+* Completing a box allows the same player to move again
+* Otherwise turn switches
+* Detect when all boxes are completed
+* Show final winner/draw
+* Provide restart
+
+The board should be implemented with React/CSS rather than relying on an external game library.
+
+Make the clickable lines easy to select.
+
+---
+
+# 16. MEMORY MATCH
+
+Create a card matching game.
+
+Use 16 cards:
+
+8 pairs.
+
+Cards should begin face down.
+
+Gameplay:
+
+* Click a card to reveal it
+* Select a second card
+* If matching, keep both revealed
+* If not matching, flip them back after a short delay
+* Prevent additional clicks during the flip delay
+* Count moves
+* Track elapsed time
+* Detect completion
+
+Display:
+
+Moves
+Time
+Pairs found
+
+Add:
+
+RESTART
+
+Use simple emoji/symbols for card content.
+
+Shuffle cards at the beginning of every game.
+
+---
+
+# 17. 2048
+
+Implement a playable 2048 game.
+
+Requirements:
+
+* 4×4 board
+* Start with two tiles
+* Arrow key controls
+* WASD controls
+* Touch/swipe controls if practical
+* Tiles slide
+* Equal tiles merge
+* Score updates
+* New random tile after a valid move
+* Detect win at 2048
+* Detect game over
+* Restart button
+
+Do not allow multiple merges of the same tile in one move.
+
+Display:
+
+Score
+Best Score
+
+Store best score in LocalStorage.
+
+---
+
+# 18. SNAKE
+
+Create a playable Snake game.
+
+Requirements:
+
+* Grid-based board
+* Snake movement
+* Food
+* Score
+* Snake grows after eating
+* Collision with walls
+* Collision with itself
+* Game over
+* Restart
+
+Controls:
+
+Arrow keys
+WASD
+
+Prevent instant reverse-direction bugs.
+
+Increase difficulty gradually as score increases.
+
+Display:
+
+Score
+High Score
+
+Store high score in LocalStorage.
+
+Use a game loop with setInterval or requestAnimationFrame.
+
+Clean up timers when the component unmounts.
+
+---
+
+# 19. HANGMAN
+
+Create Hangman.
+
+Requirements:
+
+* Local word list
+* Random word
+* Display hidden letters
+* On-screen keyboard
+* Physical keyboard support
+* Track incorrect guesses
+* Maximum incorrect attempts
+* Visual hangman progression using CSS/simple elements
+* Win condition
+* Lose condition
+* Restart
+
+Display:
+
+Word
+Incorrect guesses
+Remaining attempts
+
+Do not use external APIs.
+
+---
+
+# 20. CONNECT FOUR
+
+Implement Connect Four.
+
+Requirements:
+
+* 7 columns
+* 6 rows
+* Two players
+* Players take turns
+* Piece falls to lowest available position
+* Detect horizontal win
+* Detect vertical win
+* Detect diagonal win
+* Detect draw
+* Highlight winning four cells
+* Restart
+* Score tracking
+
+Do not allow moves after game completion.
+
+---
+
+# 21. ROCK PAPER SCISSORS
+
+Create a polished Rock Paper Scissors game.
+
+Options:
+
+Rock
+Paper
+Scissors
+
+User chooses one.
+
+Computer chooses randomly.
+
+Display:
+
+Your choice
+Computer choice
+Result
+
+Track:
+
+Wins
+Losses
+Draws
+
+Buttons:
+
+ROCK
+PAPER
+SCISSORS
+
+Add a small result animation.
+
+Store lifetime statistics in LocalStorage.
+
+---
+
+# 22. NUMBER GUESSING
+
+Create a simple number guessing game.
+
+Generate a random number between 1 and 100.
+
+User enters guesses.
+
+After each guess:
+
+If too high:
+
+"Too high!"
+
+If too low:
+
+"Too low!"
+
+If correct:
+
+"You got it!"
+
+Track number of attempts.
+
+Display a useful hint after several unsuccessful guesses.
+
+Provide:
+
+NEW GAME
+
+---
+
+# 23. GAME RESULT COMPONENT
+
+Create a reusable GameResult component.
+
+Props should allow:
+
+* title
+* message
+* score
+* primary action
+* secondary action
+
+Example:
+
+┌─────────────────────────────┐
+│                             │
+│        🎉 YOU WON!          │
+│                             │
+│       Score: 450            │
+│                             │
+│       [ PLAY AGAIN ]        │
+│                             │
+│     [ BACK TO GAMES ]       │
+│                             │
+└─────────────────────────────┘
+
+Use this component where it makes sense.
+
+---
+
+# 24. GAME HEADER
+
+Create a reusable GameHeader component containing:
+
+Back to Games
+
+Game title
+
+Game description
+
+Score/stat area where appropriate
+
+This prevents every game page from having a completely different layout.
+
+---
+
+# 25. LOCAL STORAGE
+
+Create utility functions in:
+
+utils/storage.js
+
+Use LocalStorage for persistent data such as:
+
+* Tic Tac Toe scores
+* 2048 best score
+* Snake high score
+* RPS statistics
+* Game preferences if needed
+
+Do not store temporary game state unnecessarily.
+
+Handle missing/corrupted LocalStorage values gracefully.
+
+---
+
+# 26. ACCESSIBILITY
+
+Implement basic accessibility properly.
+
+Use:
+
+* Semantic HTML
+* Button elements instead of clickable divs
+* aria-label where needed
+* Visible focus states
+* Keyboard accessibility
+* Sufficient text contrast
+* Clear game status messages
+
+For game boards, make controls understandable.
+
+---
+
+# 27. ERROR HANDLING
+
+The application should not crash because of:
+
+* Invalid LocalStorage data
+* Unexpected route
+* Empty search
+* Invalid input
+* Repeated clicks
+* Game state edge cases
+
+Create a NotFound page for invalid routes.
+
+Example:
+
+"404"
+
+"Looks like this game doesn't exist."
+
+[BACK TO HOME]
+
+---
+
+# 28. PERFORMANCE
+
+Keep the application lightweight.
+
+Avoid unnecessary dependencies.
+
+Avoid unnecessary re-renders where possible.
+
+Use useMemo only where it provides a real benefit.
+
+Clean up:
+
+* intervals
+* timeouts
+* keyboard event listeners
+
+when components unmount.
+
+Do not leave background timers running after navigating away from a game.
+
+---
+
+# 29. GAME PAGE LAYOUT
+
+Every game should follow a consistent structure:
+
+Navbar
+
+↓
+
+Game header
+
+↓
+
+Game board / game interface
+
+↓
+
+Game controls
+
+↓
+
+Score / statistics
+
+↓
+
+Instructions
+
+↓
+
+Footer
+
+For example:
+
+TIC TAC TOE
+
+"Classic 3×3 strategy game"
+
+[Game Board]
+
+Player X: 3
+Player O: 2
+Draws: 1
+
+[RESTART]
+
+How to Play
+
+"Take turns placing X and O..."
+
+---
+
+# 30. GAME INSTRUCTIONS
+
+Each game should have a small "How to Play" section underneath.
+
+Keep instructions short and clear.
+
+Example:
+
+HOW TO PLAY
+
+"Take turns placing your mark on an empty square. Get three marks in a row to win."
+
+Do this for every game.
+
+---
+
+# 31. FOOTER
+
+Create a reusable footer.
+
+Example:
+
+GAMEBOX
+
+"Your games. Your playground."
+
+Games
+About
+
+"Built with React"
+
+Do not include unnecessary social media links.
+
+---
+
+# 32. ABOUT PAGE
+
+Create a simple About page.
+
+Heading:
+
+"ABOUT GAMEBOX"
+
+Description:
+
+"GameBox is a collection of classic browser games built as a lightweight React gaming hub."
+
+Explain that the project focuses on:
+
+* React component architecture
+* Game state management
+* Interactive UI
+* Browser-based game logic
+* Responsive design
+
+Keep it concise.
+
+---
+
+# 33. UX DETAILS
+
+Important:
+
+When the user hovers over a game card:
+
+* Slight elevation
+* Slight scale
+* Clear Play button
+
+When a game starts:
+
+* Show the game immediately
+* Do not use unnecessary loading screens
+
+When a game ends:
+
+* Clearly communicate the result
+* Provide an immediate replay option
+
+Never make the user navigate back to the game library just to replay.
+
+---
+
+# 34. EMPTY STATES
+
+Create proper empty states.
+
+For search:
+
+"No games found"
+
+"Try searching for something else."
+
+For future extensibility, make EmptyState reusable.
+
+---
+
+# 35. CODE QUALITY
+
+Follow these rules:
+
+* Components should have clear responsibilities.
+* Avoid giant components.
+* Use descriptive variable names.
+* Keep game logic understandable.
+* Do not duplicate common UI unnecessarily.
+* Use reusable components.
+* Keep styling organized.
+* Do not use inline styles everywhere.
+* Do not use hardcoded repeated game data.
+* Do not use unnecessary abstractions.
+
+The code should be understandable to a CSE student learning React.
+
+Do not over-engineer the application.
+
+---
+
+# 36. IMPORTANT IMPLEMENTATION RULE
+
+Every game listed on the Games page must actually work.
+
+Do NOT create:
+
+* fake buttons
+* placeholder game boards
+* "Coming Soon" screens
+* non-functional controls
+* fake scores
+
+If a game card exists, clicking Play must lead to a fully playable implementation.
+
+---
+
+# 37. FINAL UI QUALITY
+
+Before considering the project complete, verify:
+
+Desktop layout works.
+
+Mobile layout works.
+
+Navbar works.
+
+All routes work.
+
+All game cards work.
+
+Search works.
+
+Category filtering works.
+
+All ten games are playable.
+
+Restart buttons work.
+
+Game-over states work.
+
+No game continues running after leaving the page.
+
+LocalStorage works.
+
+404 page works.
+
+No console errors.
+
+No broken imports.
+
+No missing components.
+
+No horizontal scrolling on mobile.
+
+---
+
+# 38. DEVELOPMENT APPROACH
+
+Build the application logically in this order:
+
+1. Create Vite React project structure.
+2. Configure React Router.
+3. Create global CSS/design system.
+4. Create Navbar and Footer.
+5. Create games.js data.
+6. Create GameCard and GameGrid.
+7. Build Home page.
+8. Build Games page with search/filter.
+9. Build reusable GameHeader and GameResult.
+10. Implement Tic Tac Toe.
+11. Implement Wordle.
+12. Implement Dots & Boxes.
+13. Implement Memory Match.
+14. Implement 2048.
+15. Implement Snake.
+16. Implement Hangman.
+17. Implement Connect Four.
+18. Implement Rock Paper Scissors.
+19. Implement Number Guessing.
+20. Add LocalStorage persistence.
+21. Add About and 404 pages.
+22. Polish responsive design.
+23. Test every route and game.
+24. Fix all console/runtime errors.
+
+---
+
+# 39. DO NOT STOP AFTER CREATING THE UI
+
+This is extremely important.
+
+Do not only create the visual frontend.
+
+The actual game logic is the main purpose of the project.
+
+The final result should be a complete working website that I can run locally and immediately play.
+
+---
+
+# 40. FINAL EXPECTED EXPERIENCE
+
+When I open the website, I should see:
+
+GAMEBOX
+
+"Your games. Your playground."
+
+I can click:
+
+PLAY NOW
+
+↓
+
+Games library
+
+↓
+
+Search/filter games
+
+↓
+
+Choose a game
+
+↓
+
+Play the game
+
+↓
+
+Get a result
+
+↓
+
+Play Again
+
+or
+
+↓
+
+Back to Games
+
+The entire experience should feel coherent, polished and consistent.
+
+Build the project completely rather than giving me a tutorial or partial implementation.
+
+After implementation, verify that the application builds successfully and fix any errors you encounter.
+# 🎮 GameBox
+
+### Your Games. Your Playground.
+
+**GameBox** is a modern browser-based mini-games hub built with **React**, bringing multiple classic games together in one simple and interactive web application.
+
+Instead of visiting different websites for different games, GameBox provides a single platform where users can browse, search, and instantly play a collection of classic games.
+
+---
+
+## ✨ Features
+
+* 🎮 Multiple playable games in one platform
+* 🔎 Search games by name, description, or category
+* 🗂️ Filter games by category
+* 📱 Fully responsive design
+* 🌙 Modern dark arcade-inspired UI
+* 💾 Persistent scores using LocalStorage
+* 🔄 Instant restart and replay functionality
+* ⌨️ Keyboard controls for supported games
+* 🏆 Score and statistics tracking
+* 🧩 Reusable React components
+* ⚡ Fast and lightweight frontend
+
+---
+
+## 🕹️ Available Games
+
+| Game                  | Category | Players   |
+| --------------------- | -------- | --------- |
+| ❌ Tic Tac Toe         | Board    | 2 Players |
+| 🟩 Wordle             | Word     | 1 Player  |
+| 🔵 Dots & Boxes       | Board    | 2 Players |
+| 🃏 Memory Match       | Puzzle   | 1 Player  |
+| 🔢 2048               | Puzzle   | 1 Player  |
+| 🐍 Snake              | Arcade   | 1 Player  |
+| 🎯 Hangman            | Word     | 1 Player  |
+| 🔴 Connect Four       | Board    | 2 Players |
+| ✊ Rock Paper Scissors | Casual   | 1 Player  |
+| 🔢 Number Guessing    | Casual   | 1 Player  |
+
+---
+
+## 🖥️ Pages
+
+### Home
+
+The landing page introduces GameBox and highlights selected games.
+
+### Games
+
+A complete game library containing all available games.
+
+Users can:
+
+* Search games
+* Filter by category
+* Select a game
+* Start playing instantly
+
+### Individual Game Pages
+
+Each game has its own interface, controls, game logic, statistics, restart functionality, and instructions.
+
+### About
+
+A short overview of the GameBox project and the technologies used.
+
+### 404
+
+A custom page for invalid or unavailable routes.
+
+---
+
+## 🧱 Project Structure
+
+```text
+GameBox/
+│
+├── src/
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── Footer.jsx
+│   │   ├── GameCard.jsx
+│   │   ├── GameGrid.jsx
+│   │   ├── SearchBar.jsx
+│   │   ├── CategoryFilter.jsx
+│   │   ├── GameHeader.jsx
+│   │   ├── GameResult.jsx
+│   │   └── EmptyState.jsx
+│   │
+│   ├── games/
+│   │   ├── TicTacToe.jsx
+│   │   ├── Wordle.jsx
+│   │   ├── DotsAndBoxes.jsx
+│   │   ├── MemoryMatch.jsx
+│   │   ├── Game2048.jsx
+│   │   ├── Snake.jsx
+│   │   ├── Hangman.jsx
+│   │   ├── ConnectFour.jsx
+│   │   ├── RockPaperScissors.jsx
+│   │   └── NumberGuessing.jsx
+│   │
+│   ├── pages/
+│   │   ├── Home.jsx
+│   │   ├── Games.jsx
+│   │   ├── About.jsx
+│   │   └── NotFound.jsx
+│   │
+│   ├── data/
+│   │   └── games.js
+│   │
+│   ├── utils/
+│   │   ├── storage.js
+│   │   └── gameUtils.js
+│   │
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+│
+├── public/
+│
+├── package.json
+├── vite.config.js
+└── README.md
+```
+
+---
+
+## ⚙️ Tech Stack
+
+### Frontend
+
+* **React**
+* **JavaScript**
+* **CSS**
+* **Vite**
+
+### Routing
+
+* **React Router**
+
+### Browser Storage
+
+* **LocalStorage**
+
+No backend or database is required.
+
+---
+
+## 🧠 React Concepts Used
+
+This project focuses on practical React development, including:
+
+* Functional Components
+* Props
+* State Management
+* React Hooks
+* Conditional Rendering
+* Lists and Dynamic Rendering
+* Event Handling
+* React Router
+* Component Reusability
+* LocalStorage
+* Timers and Game Loops
+* Keyboard Event Handling
+
+---
+
+## 🎯 Game Logic
+
+Each game has its own independent state and logic.
+
+For example:
+
+### Tic Tac Toe
+
+* Turn management
+* Win detection
+* Draw detection
+* Winning-cell highlighting
+* Score tracking
+
+### Wordle
+
+* Word validation
+* Letter matching
+* Duplicate-letter handling
+* Keyboard state
+* Six-attempt game system
+
+### 2048
+
+* Grid movement
+* Tile merging
+* Score calculation
+* Random tile generation
+* Win/game-over detection
+
+### Snake
+
+* Real-time movement
+* Food generation
+* Collision detection
+* Increasing snake length
+* Score tracking
+
+This makes GameBox more than a static game collection — it is a practical demonstration of **state-driven interactive applications in React**.
+
+---
+
+## 💾 LocalStorage
+
+GameBox uses browser LocalStorage to persist selected statistics between sessions.
+
+Examples include:
+
+```text
+Tic Tac Toe scores
+2048 best score
+Snake high score
+Rock Paper Scissors statistics
+```
+
+No account or database is required.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/YOUR-USERNAME/gamebox.git
+```
+
+### 2. Navigate to the project
+
+```bash
+cd gamebox
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
+### 5. Open the application
+
+Vite will provide a local development URL, usually:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## 📱 Responsive Design
+
+GameBox is designed to work across:
+
+* 💻 Desktop
+* 🖥️ Laptop
+* 📱 Mobile
+* 📲 Tablet
+
+The game boards, navigation, cards, controls, and layouts adapt to smaller screens.
+
+---
+
+## 🎨 Design Philosophy
+
+The interface follows a **modern indie-arcade aesthetic** rather than a traditional gaming website.
+
+The design focuses on:
+
+* Dark backgrounds
+* Strong typography
+* Rounded surfaces
+* Subtle animations
+* Clear game hierarchy
+* Minimal UI clutter
+* Consistent interaction patterns
+
+The goal is to make every game feel like part of the same platform.
+
+---
+
+## 🔮 Future Improvements
+
+Potential future additions include:
+
+* 👤 User profiles
+* 🏆 Global leaderboards
+* 🌐 Online multiplayer
+* 🎨 Multiple themes
+* 🔊 Game sound effects
+* 🎵 Background music
+* 🌓 Light/Dark theme switching
+* 📊 Detailed player statistics
+* 🥇 Achievement system
+* 🤖 AI opponents
+* 🎮 More mini-games
+* ☁️ Cloud-based score synchronization
+
+---
+
+## 📚 Learning Goals
+
+This project was created to practice and demonstrate:
+
+```text
+React
+   ↓
+Component Architecture
+   ↓
+State Management
+   ↓
+Game Logic
+   ↓
+User Interaction
+   ↓
+Responsive UI
+   ↓
+LocalStorage
+```
+
+It serves as a practical project for understanding how React can be used to build highly interactive browser applications.
+
+---
+
+## 🤝 Contributing
+
+Contributions and new game ideas are welcome.
+
+To contribute:
+
+1. Fork the repository
+2. Create a new branch
+
+```bash
+git checkout -b feature/new-game
+```
+
+3. Add your game or improvement
+4. Commit your changes
+
+```bash
+git commit -m "Add new game"
+```
+
+5. Push the branch
+
+```bash
+git push origin feature/new-game
+```
+
+6. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is open-source and available under the **MIT License**.
+
+---
+
+## 👨‍💻 Author
+
+**Shresth Rohan**
+
+Computer Science & Engineering — Data Science
+
+Interested in:
+
+* Full Stack Development
+* AI/ML
+* Data Science
+* Game Development
+* UI/UX & Creative Technology
+
+---
+
+⭐ If you like the project, consider giving the repository a star!

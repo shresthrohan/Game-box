@@ -1,0 +1,5 @@
+import { Link } from 'wouter';
+
+export default function About() {
+  return <main className="page"><section className="about-hero"><div className="eyebrow">About / the short version</div><h1>Games for the gap <span style={{color:'#ff8054'}}>between things.</span></h1><p className="hero-copy">GameBox is a small browser arcade for the moment you have seven minutes, one coffee, and a suspicious amount of confidence.</p><div className="hero-actions"><Link href="/games" className="button button-primary" data-testid="link-about-play">Open the cabinet →</Link></div></section><section><div className="manifesto"><div className="manifesto-card"><b>10</b><h3>Classics, sharpened.</h3><p>From a tiny grid of Xs and Os to the 2048 chase, every board is ready the second you are.</p></div><div className="manifesto-card"><b>0</b><h3>Accounts required.</h3><p>No profile, no social layer, no email waiting in your inbox. Best scores live locally on your device.</p></div><div className="manifesto-card"><b>∞</b><h3>Rematches welcome.</h3><p>Good games are small enough to replay and satisfying enough to remember.</p></div></div></section></main>;
+}

@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "GameBox"
+description = "A polished browser mini-games hub where players can browse, discover, and play ten classic games with responsive controls and persistent scores."
+version = "1.0.0"
+id = "artifacts/gamebox"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18697
+
+[services.development]
+run = "pnpm --filter @workspace/gamebox run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/gamebox", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/gamebox/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18697"
+BASE_PATH = "/"

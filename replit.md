@@ -1,10 +1,11 @@
-# [Project name]
+# GameBox
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+GameBox is a responsive browser arcade for playing ten classic mini-games with local score persistence.
 
 ## Run & Operate
 
 - `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm --filter @workspace/gamebox run dev` — run the GameBox web app through its managed workflow
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
@@ -22,23 +23,29 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/gamebox/src/data/games.ts` — central game metadata and category data
+- `artifacts/gamebox/src/components/games.tsx` — playable game implementations
+- `artifacts/gamebox/src/components/shell.tsx` — shared navbar and footer
+- `artifacts/gamebox/src/pages/` — home, library, about, game route, and 404 pages
+- `artifacts/gamebox/src/index.css` — shared arcade theme and responsive layout
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- GameBox is frontend-only by design; the games do not need an account, API, or database.
+- LocalStorage is used only for durable player-facing records such as best scores and lifetime stats.
+- Game routes use one shared page shell so every game keeps the same navigation, instructions, and replay pattern.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+The app includes a landing page, searchable and filterable library, about page, responsive navigation, and ten playable games: Tic-Tac-Toe, Wordle, Dots & Boxes, Memory Match, 2048, Snake, Hangman, Connect Four, Rock Paper Scissors, and Number Guessing.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+The requested visual direction is a modern dark arcade aesthetic that stays polished and avoids childish excess.
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- The GameBox Vite build expects `PORT` and `BASE_PATH` from its managed workflow; direct shell builds need those values supplied.
 
 ## Pointers
 
